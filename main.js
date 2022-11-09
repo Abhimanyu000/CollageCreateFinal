@@ -7,6 +7,15 @@ function start()
     recognition.start();
 } 
 
+recognition.onresult=function (event){
+    console.log(event);
+    content=event.results[0][0].transcript.toLowerCase();
+    console.log(content);
+    if(content=="selfie"){
+        speak();
+
+    }
+}
 
 camera = document.getElementById("camera");
 Webcam.set({
@@ -28,44 +37,26 @@ function speak(){
     var utterThis = new SpeechSynthesisUtterance(speak_data);
     synth.speak(utterThis);
 
-    setTimeout();{
+    setTimeout (function(){
         imge_id="SELFIE1";
         take_snapshot()
         speak_data="Your selfie will be taken in 5 seconds";
         utterThis.SpeechSynthesisUtterance(speak_data);
-        synth.speak(utterThis);
-        setTimeout(function()
-    {
-        snapshot();
-        save();
-    },5000)
-    }
+        synth.speak(utterThis);}, 5000);
 
-    setTimeout2();{
-        imge_id="SELFIE2";
-        take_snapshot()
-        speak_data="Your selfie will be taken in 10 seconds";
-        utterThis.SpeechSynthesisUtterance(speak_data);
-        synth.speak(utterThis);
-        setTimeout(function()
-    {
-        snapshot();
-        save();
-    },10000)
-    }
+        setTimeout (function(){
+            imge_id="SELFIE2";
+            take_snapshot()
+            speak_data="Your selfie will be taken in 10 seconds";
+            utterThis.SpeechSynthesisUtterance(speak_data);
+            synth.speak(utterThis);}, 10000);
 
-    setTimeout3();{
-        imge_id="SELFIE3";
-        take_snapshot()
-        speak_data="Your selfie will be taken in 15 seconds";
-        utterThis.SpeechSynthesisUtterance(speak_data);
-        synth.speak(utterThis);
-        setTimeout(function()
-    {
-        snapshot();
-        save();
-    },15000)
-    }
+            setTimeout (function(){
+                imge_id="SELFIE3";
+                take_snapshot()
+                synth.speak(utterThis);}, 15000);
+
+                
 }
 
 function take_snapshot(){
